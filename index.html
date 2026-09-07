@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalender Kegiatan - OSIS SMAIT Anak Sholeh Mataram</title>
+  <meta name="description" content="Kalender resmi kegiatan, rapat, lomba, dan agenda program kerja OSIS SMAIT Anak Sholeh Mataram.">
+  <meta name="theme-color" content="#7B5A3A">
+
+  <!-- OpenGraph / Media Sosial -->
+  <meta property="og:title" content="Kalender Kegiatan - OSIS SMAIT Anak Sholeh Mataram">
+  <meta property="og:description" content="Jadwal resmi program kerja dan kegiatan siswa SMAIT Anak Sholeh Mataram.">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- PWA & Favicon -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
+  <!-- Font Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Header Utama & Navigasi -->
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand__logo" id="brandLogo">
+        <!-- Default Vector Logo (diganti otomatis oleh assets/logo.png jika tersedia) -->
+        <img src="assets/logo.png" alt="Logo SMAIT Anak Sholeh Mataram" onerror="this.style.display='none'; document.getElementById('brandFallbackSvg').style.display='block';">
+        <svg id="brandFallbackSvg" viewBox="0 0 120 120" role="img" aria-label="Logo SMAIT Anak Sholeh Mataram" style="display: none;">
+          <g class="lg-star">
+            <rect x="32" y="18" width="52" height="52" rx="6"/>
+            <rect x="32" y="18" width="52" height="52" rx="6" transform="rotate(45 58 44)"/>
+          </g>
+          <g class="lg-diamond">
+            <path d="M58 6 l5 7 -5 7 -5-7z"/>
+            <path d="M32 16 l5 7 -5 7 -5-7z"/>
+            <path d="M84 16 l5 7 -5 7 -5-7z"/>
+            <path d="M22 38 l5 7 -5 7 -5-7z"/>
+            <path d="M94 38 l5 7 -5 7 -5-7z"/>
+          </g>
+          <g class="lg-figure" transform="translate(46 58) scale(.82)">
+            <circle cx="0" cy="-18" r="6"/>
+            <path d="M0 -11c5 0 8 3 9 7l6 12c1 2.5-2.5 4.5-4 2l-6-10v12l3 14c.8 3-3.5 4-4.5 1L0 17l-3.5 10c-1 3-5.3 2-4.5-1l3-14V0l-6 10c-1.5 2.5-5 .5-4-2l6-12c1-4 4-7 9-7z"/>
+          </g>
+          <g class="lg-figure" transform="translate(70 52)">
+            <circle cx="0" cy="-18" r="6"/>
+            <path d="M0 -11c5 0 8 3 9 7l6 12c1 2.5-2.5 4.5-4 2l-6-10v12l3 14c.8 3-3.5 4-4.5 1L0 17l-3.5 10c-1 3-5.3 2-4.5-1l3-14V0l-6 10c-1.5 2.5-5 .5-4-2l6-12c1-4 4-7 9-7z"/>
+          </g>
+          <g class="lg-book">
+            <path d="M8 78c18-6 34-4 50 8 16-12 32-14 50-8-14 10-30 18-50 28-20-10-36-18-50-28z"/>
+            <path class="lg-book-page" d="M58 90c-8-6-16-9-24-10 8 4 16 9 24 15 8-6 16-11 24-15-8 1-16 4-24 10z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="brand__text">
+        <p class="brand__kicker">Organisasi Siswa Intra Sekolah</p>
+        <h1 class="brand__title">SMAIT Anak Sholeh Mataram</h1>
+      </div>
+    </div>
+
+    <div class="header-tools">
+      <div class="search">
+        <svg class="search__icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5 17 17"/></svg>
+        <input type="search" id="searchInput" placeholder="Cari kegiatan..." aria-label="Cari kegiatan">
+      </div>
+
+      <button class="icon-btn" id="btnTheme" aria-label="Ganti tema terang/gelap" title="Ganti mode terang/gelap">
+        <svg id="themeIconDark" viewBox="0 0 20 20" aria-hidden="true"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        <svg id="themeIconLight" viewBox="0 0 20 20" aria-hidden="true" hidden><circle cx="10" cy="10" r="4"/><path d="M10 2v2m0 12v2m8-8h-2M4 10H2m13.657-5.657l-1.414 1.414m-8.486 8.486l-1.414 1.414m0-11.314l1.414 1.414m8.486 8.486l1.414 1.414"/></svg>
+      </button>
+
+      <button class="btn btn--ghost user-menu" id="btnUser" type="button" title="Akun">Masuk</button>
+
+      <button class="btn btn--primary" id="btnAdd" type="button">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+        Tambah Kegiatan
+      </button>
+
+      <button class="btn btn--soft" id="btnInstall" type="button" hidden>Pasang Aplikasi</button>
+      <button class="btn btn--soft" id="btnNotifications" type="button">Aktifkan Notifikasi</button>
+    </div>
+  </header>
+
+  <!-- Konten Utama -->
+  <main class="layout">
+
+    <!-- Kolom Kiri: Kalender -->
+    <section class="card calendar" id="calendarCard" aria-label="Kalender kegiatan">
+      <div class="cal-top">
+        <div class="cal-heading">
+          <h2 class="cal-month" id="monthLabel">-</h2>
+          <p class="cal-meta" id="monthMeta">-</p>
+        </div>
+
+        <div class="cal-controls">
+          <div class="view-switch" role="tablist" aria-label="Mode tampilan">
+            <button type="button" class="view-btn is-active" id="viewGridBtn" role="tab" aria-selected="true">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3h5v5H3zm9 0h5v5h-5zM3 12h5v5H3zm9 0h5v5h-5z"/></svg>
+              Bulan
+            </button>
+            <button type="button" class="view-btn" id="viewAgendaBtn" role="tab" aria-selected="false">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4h14M3 8h14M3 12h14M3 16h14"/></svg>
+              Agenda
+            </button>
+          </div>
+
+          <div class="cal-nav">
+            <button class="icon-btn" id="btnPrev" aria-label="Bulan sebelumnya" title="Bulan sebelumnya">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4 6 10l6 6"/></svg>
+            </button>
+            <button class="btn btn--ghost" id="btnToday">Hari Ini</button>
+            <button class="icon-btn" id="btnNext" aria-label="Bulan berikutnya" title="Bulan berikutnya">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m8 4 6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Kategori -->
+      <div class="filters" id="filters" role="group" aria-label="Saring kategori"></div>
+
+      <!-- Tampilan Grid Bulanan -->
+      <div id="monthGridView">
+        <div class="weekdays" aria-hidden="true">
+          <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+        </div>
+        <div class="grid" id="calGrid"></div>
+      </div>
+
+      <!-- Tampilan List Agenda -->
+      <div id="agendaListView" hidden>
+        <div class="agenda-list" id="agendaList"></div>
+      </div>
+    </section>
+
+    <!-- Kolom Kanan: Sidebar & Panel Informasi -->
+    <aside class="sidebar">
+
+      <!-- Panel Tanggal Terpilih -->
+      <section class="card panel">
+        <div class="panel__head">
+          <h3 id="dayTitle">-</h3>
+          <span class="pill-count" id="dayCount">0</span>
+        </div>
+        <div id="dayEvents" class="stack"></div>
+        <button class="btn btn--soft btn--block" id="btnAddDay" type="button">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+          Tambah di tanggal ini
+        </button>
+      </section>
+
+      <!-- Panel Tugas Pengguna -->
+      <section class="card panel" id="myTasksPanel">
+        <div class="panel__head">
+          <h3>Tugas Saya</h3>
+          <span class="pill-count" id="taskCount">0</span>
+        </div>
+        <div id="myTasks" class="stack"></div>
+      </section>
+
+      <!-- Panel Administrasi (Khusus Admin/Pembina) -->
+      <section class="card panel" id="adminPanel" hidden>
+        <div class="panel__head">
+          <h3>Administrasi</h3>
+        </div>
+        <button class="btn btn--soft btn--block" id="btnManageUsers" type="button">Kelola Pengguna</button>
+      </section>
+
+      <!-- Panel Statistik Bulanan -->
+      <section class="card panel">
+        <div class="panel__head">
+          <h3>Statistik Bulan Ini</h3>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num" id="statTotal">0</div>
+            <div class="stat-lbl">Program</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="statDone" style="color: var(--c-green);">0</div>
+            <div class="stat-lbl">Selesai</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="statUpcoming" style="color: var(--c-amber);">0</div>
+            <div class="stat-lbl">Mendatang</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel Kegiatan Mendatang -->
+      <section class="card panel">
+        <div class="panel__head">
+          <h3>Kegiatan Mendatang</h3>
+        </div>
+        <div id="upcoming" class="stack"></div>
+      </section>
+
+      <!-- Panel Ekspor & Impor Data -->
+      <section class="card panel">
+        <div class="panel__head">
+          <h3>Data & Cadangan</h3>
+        </div>
+        <p class="muted small">Data tersimpan aman di browser perangkat ini. Lakukan ekspor berkala untuk cadangan.</p>
+        <div class="row-btns">
+          <button class="btn btn--soft" id="btnExport" type="button" title="Ekspor cadangan berkas JSON">Ekspor JSON</button>
+          <button class="btn btn--soft" id="btnExportIcs" type="button" title="Ekspor ke Google / Apple Calendar (.ics)">Ekspor ICS</button>
+        </div>
+        <div class="row-btns">
+          <button class="btn btn--soft" id="btnImport" type="button" title="Impor data dari berkas JSON">Impor JSON</button>
+          <button class="btn btn--soft btn--danger" id="btnReset" type="button" title="Hapus semua kegiatan tersimpan">Reset Data</button>
+        </div>
+        <input type="file" id="fileInput" accept="application/json" hidden>
+      </section>
+
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span>Kalender Kegiatan OSIS &bull; SMA Islam Terpadu Anak Sholeh Mataram</span>
+    <span id="footerCount">0 kegiatan tersimpan</span>
+  </footer>
+</div>
+
+<!-- ==========================================================================
+     Dialog Modal: Formulir Tambah / Ubah Kegiatan
+     ========================================================================== -->
+<dialog class="modal" id="eventModal" aria-labelledby="modalTitle">
+  <form id="eventForm" novalidate>
+    <div class="modal__head">
+      <h2 id="modalTitle">Tambah Kegiatan</h2>
+      <button type="button" class="icon-btn icon-btn--plain" id="btnClose" aria-label="Tutup">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg>
+      </button>
+    </div>
+
+    <div class="modal__body">
+      <div class="field">
+        <label for="fTitle">Nama kegiatan <span class="req">*</span></label>
+        <input id="fTitle" type="text" maxlength="90" placeholder="Contoh: Rapat Pleno Pengurus OSIS" autocomplete="off" required>
+        <p class="err" id="errTitle"></p>
+      </div>
+
+      <div class="field">
+        <span class="label">Kategori</span>
+        <div class="chips chips--radio" id="fCategory"></div>
+      </div>
+
+      <div class="field">
+        <span class="label">Status Kegiatan</span>
+        <div class="chips chips--radio" id="fStatus">
+          <button type="button" class="chip chip--status is-active" data-status="rencana" aria-pressed="true">
+            <span class="status-dot status-dot--rencana"></span>Rencana
+          </button>
+          <button type="button" class="chip chip--status" data-status="berjalan" aria-pressed="false">
+            <span class="status-dot status-dot--berjalan"></span>Berjalan
+          </button>
+          <button type="button" class="chip chip--status" data-status="selesai" aria-pressed="false">
+            <span class="status-dot status-dot--selesai"></span>Selesai
+          </button>
+          <button type="button" class="chip chip--status" data-status="batal" aria-pressed="false">
+            <span class="status-dot status-dot--batal"></span>Batal
+          </button>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="fSekbid">Divisi OSIS</label>
+          <select id="fSekbid">
+            <option value="">-- Umum / Tanpa Divisi --</option>
+            <option value="humas">HUMAS</option>
+            <option value="kerohanian">KEROHANIAN</option>
+            <option value="media">MEDIA</option>
+            <option value="psdm">PSDM</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fPic">Penanggung Jawab (PIC)</label>
+          <input id="fPic" type="text" maxlength="60" placeholder="Nama / Kontak WA" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="fDate">Tanggal mulai <span class="req">*</span></label>
+          <input id="fDate" type="date" required>
+          <p class="err" id="errDate"></p>
+        </div>
+        <div class="field">
+          <label for="fEndDate">Tanggal selesai</label>
+          <input id="fEndDate" type="date">
+          <p class="hint">Kosongkan bila hanya satu hari</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="check">
+          <input type="checkbox" id="fAllDay" checked>
+          <span>Sepanjang hari</span>
+        </label>
+      </div>
+
+      <div class="grid-2" id="timeRow" hidden>
+        <div class="field">
+          <label for="fStart">Jam mulai</label>
+          <input id="fStart" type="time">
+        </div>
+        <div class="field">
+          <label for="fEnd">Jam selesai</label>
+          <input id="fEnd" type="time">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fLocation">Tempat</label>
+        <input id="fLocation" type="text" maxlength="80" placeholder="Contoh: Aula SMAIT Anak Sholeh" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="fLink">Tautan Lampiran / Dokumen / Rapat</label>
+        <input id="fLink" type="url" placeholder="https://meet.google.com/... atau dokumen Drive" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="fNotes">Catatan</label>
+        <textarea id="fNotes" rows="3" maxlength="400" placeholder="Perlengkapan, peserta, atau keterangan lain..."></textarea>
+      </div>
+
+      <!-- Penugasan Anggota (Tersedia saat edit kegiatan) -->
+      <div class="field" id="assignmentSection" hidden>
+        <span class="label">Penugasan Anggota</span>
+        <div id="assignmentList" class="stack"></div>
+        <div class="grid-2">
+          <select id="assignmentUser" aria-label="Anggota yang ditugaskan"></select>
+          <input id="assignmentTask" type="text" maxlength="80" placeholder="Tugas, misal: Dokumentasi foto">
+        </div>
+        <button type="button" class="btn btn--soft" id="btnAddAssignment" style="margin-top: 6px;">+ Tambah tugas</button>
+      </div>
+    </div>
+
+    <div class="modal__foot">
+      <button type="button" class="btn btn--ghost btn--danger" id="btnDelete" hidden>Hapus</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn btn--ghost" id="btnCancel">Batal</button>
+      <button type="submit" class="btn btn--primary">Simpan</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- ==========================================================================
+     Dialog Modal: Masuk Akun Pengurus
+     ========================================================================== -->
+<dialog class="modal" id="loginModal" aria-labelledby="loginTitle">
+  <form id="loginForm" novalidate>
+    <div class="modal__head">
+      <h2 id="loginTitle">Masuk ke Kalender OSIS</h2>
+    </div>
+    <div class="modal__body">
+      <div class="field">
+        <label for="loginUsername">Nama Pengguna (Username)</label>
+        <input id="loginUsername" type="text" placeholder="mis. ketua, pembina, anggota" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="loginPassword">Kata Sandi</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" required>
+      </div>
+      <p class="err" id="loginError"></p>
+      <p class="hint">Akun bawaan demo: <code>ketua</code> / <code>osis2024</code> (Admin), <code>pembina</code> / <code>pembina2024</code> (Pembina), <code>anggota</code> / <code>anggota2024</code> (Anggota).</p>
+    </div>
+    <div class="modal__foot">
+      <button type="button" class="btn btn--ghost" id="btnLoginTheme">Ganti Tema</button>
+      <span class="spacer"></span>
+      <button type="submit" class="btn btn--primary">Masuk</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- ==========================================================================
+     Dialog Modal: Kelola Pengguna (Admin Only)
+     ========================================================================== -->
+<dialog class="modal" id="usersModal" aria-labelledby="usersTitle">
+  <form id="usersForm">
+    <div class="modal__head">
+      <h2 id="usersTitle">Kelola Pengguna</h2>
+      <button type="button" class="icon-btn icon-btn--plain" id="btnCloseUsers" aria-label="Tutup">×</button>
+    </div>
+    <div class="modal__body">
+      <div id="usersList" class="stack"></div>
+      <div class="grid-2">
+        <input id="newUserName" type="text" placeholder="Nama Lengkap" autocomplete="name">
+        <input id="newUserUsername" type="text" placeholder="Username" autocomplete="username">
+      </div>
+      <div class="grid-2">
+        <input id="newUserPassword" type="password" placeholder="Kata Sandi" autocomplete="new-password">
+        <select id="newUserRole" aria-label="Peran Pengguna">
+          <option value="member">Anggota</option>
+          <option value="pembina">Pembina</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn--soft" id="btnAddUser">+ Tambah Pengguna</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Toast Notifikasi Ringan -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- JavaScript Aplikasi -->
+<script src="app.js" defer></script>
+</body>
+</html>
